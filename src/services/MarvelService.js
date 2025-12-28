@@ -1,6 +1,7 @@
 
 class MarvelService {
     _apiBase = 'https://api.jikan.moe/v4/';
+    _baseOffset = 3;
 
     getResource= async (url) => {
         let res = await fetch(url);
@@ -10,8 +11,8 @@ class MarvelService {
         return await res.json();
     }
 
-     getAllCharacters = async () => {
-        const res = await this.getResource(`${this._apiBase}characters?limit=9`);
+     getAllCharacters = async (offset = this._baseOffset) => {
+        const res = await this.getResource(`${this._apiBase}characters?limit=${offset}`);
         return res.data
     }
 
